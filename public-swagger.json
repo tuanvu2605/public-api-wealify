@@ -1,0 +1,5703 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/va-wallets": {
+      "get": {
+        "operationId": "VAWalletsController_getItem",
+        "x-public": true,
+        "summary": "get va wallet",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicGetVAWalletResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "VA WALLETS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
+    "/api/v1/payments": {
+      "post": {
+        "operationId": "HookPaymentController_hook",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "HOOK PAYMENTS"
+        ]
+      },
+      "get": {
+        "operationId": "PaymentsController_getList",
+        "x-public": true,
+        "summary": "get list payment",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicGetBankListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "PAYMENTS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
+    "/api/v1/virtual-accounts/transactions": {
+      "get": {
+        "operationId": "ClientVATransactionController_getListVATransaction",
+        "x-public": true,
+        "summary": "get list va transactions",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicGetTransactionListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CLIENT - VA TRANSACTIONS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
+    "/api/v1/virtual-accounts/transactions/withdrawal": {
+      "post": {
+        "operationId": "ClientVATransactionController_createWithdrawTransaction",
+        "x-public": true,
+        "summary": "create transaction withdraw va",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicCreateVAWithdrawRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicCreateVAWithdrawResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CLIENT - VA TRANSACTIONS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
+    "/api/v1/payments/banks": {
+      "get": {
+        "operationId": "BankPaymentsController_getList",
+        "summary": "Get List",
+        "parameters": [
+          {
+            "name": "keyword",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "is_deleted",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "order",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_date",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "payment_type",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "BANK",
+                "E_WALLET"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "payment_status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "PENDING",
+                "PROCESS",
+                "APPROVED",
+                "REJECTED"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindBankPaymentsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestException"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedException"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "BANK PAYMENTS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "BankPaymentsController_submit",
+        "x-public": true,
+        "summary": "create bank payment account",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicAddBankRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicAddBankResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "BANK PAYMENTS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
+    "/api/v1/virtual-accounts": {
+      "get": {
+        "operationId": "ClientVirtualAccountsController_getListVA",
+        "x-public": true,
+        "summary": "get list virtual account",
+        "parameters": [
+          {
+            "name": "va_info",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "statuses[]",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "start_date",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "end_date",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "keyword",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "platform_id",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "bank",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicGetVAListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CLIENT - VA"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ClientVirtualAccountsController_createVA",
+        "x-public": true,
+        "summary": "create virtual account",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicCreateVARequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicCreateVAResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CLIENT - VA"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    },
+    "/api/v1/platforms": {
+      "get": {
+        "operationId": "ClientPlatformController_getPlatforms",
+        "x-public": true,
+        "summary": "get list platforms source",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicGetAllowedVAWithdrawSourceResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CLIENT - PLATFORMS"
+        ],
+        "security": [
+          {
+            "access-token": []
+          },
+          {
+            "api-key": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Public API",
+    "description": "Public API documentation for Wealify",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Please enter api-key in following format"
+      }
+    },
+    "schemas": {
+      "LoginBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "LoginData": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "access_expired_at": {
+            "type": "number"
+          },
+          "access_expired_in": {
+            "type": "number"
+          },
+          "refresh_token": {
+            "type": "string"
+          },
+          "refresh_expired_at": {
+            "type": "number"
+          },
+          "two_factor_status": {
+            "type": "string",
+            "enum": [
+              "ENABLE",
+              "DISABLE"
+            ]
+          },
+          "two_factor_method": {
+            "type": "string",
+            "enum": [
+              "EMAIL",
+              "AUTHENTICATOR_APP",
+              "SMS"
+            ]
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "new_device": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "access_token",
+          "access_expired_at",
+          "access_expired_in",
+          "refresh_token",
+          "refresh_expired_at",
+          "two_factor_status",
+          "two_factor_method",
+          "status",
+          "new_device"
+        ]
+      },
+      "ResponseError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "property": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "SystemVersionInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "code",
+          "path"
+        ]
+      },
+      "SystemInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "version": {
+            "$ref": "#/components/schemas/SystemVersionInfo"
+          }
+        },
+        "required": [
+          "name",
+          "mode",
+          "version"
+        ]
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/LoginData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "BadRequestException": {
+        "type": "object",
+        "properties": {}
+      },
+      "UnauthorizedException": {
+        "type": "object",
+        "properties": {}
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "RefreshResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/LoginData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "RegisterBody": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "referral_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "full_name",
+          "account_type",
+          "email",
+          "password",
+          "phone_number",
+          "referral_code"
+        ]
+      },
+      "RegisterResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/LoginData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ForgotPasswordBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "ForgotPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "VerifyResetRequestBody": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "email"
+        ]
+      },
+      "ResetPasswordBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "new_password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "new_password"
+        ]
+      },
+      "ResetPasswordResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "IsMailRegisteredBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "IsMailRegisteredResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "CallingCodeRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "number"
+          }
+        }
+      },
+      "FileRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "driver": {
+            "type": "string",
+            "enum": [
+              "LARK",
+              "GOOGLE",
+              "AWS"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "CountryRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "number"
+          },
+          "iso_code2": {
+            "type": "string"
+          },
+          "iso_code3": {
+            "type": "string"
+          },
+          "flag": {
+            "$ref": "#/components/schemas/FileRelation"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "LanguageRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "native_name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "locale": {
+            "type": "string"
+          },
+          "flag": {
+            "$ref": "#/components/schemas/FileRelation"
+          },
+          "countries": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "flag"
+        ]
+      },
+      "CustomerRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "number"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "calling_code": {
+            "$ref": "#/components/schemas/CallingCodeRelation"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "avatar": {
+            "$ref": "#/components/schemas/FileRelation"
+          },
+          "country": {
+            "$ref": "#/components/schemas/CountryRelation"
+          },
+          "language": {
+            "$ref": "#/components/schemas/LanguageRelation"
+          },
+          "customer_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "CurrencyRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "transfer_methods": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "countries": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "transaction_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "TOP_UP",
+                "WITHDRAWAL",
+                "INTERNAL"
+              ]
+            }
+          },
+          "providers": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "provider_types": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "icon": {
+            "$ref": "#/components/schemas/FileRelation"
+          }
+        },
+        "required": [
+          "symbol"
+        ]
+      },
+      "WalletInfoWithPendingAmount": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MAIN",
+              "VA",
+              "VC"
+            ]
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "balance_str": {
+            "type": "string"
+          },
+          "changes": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "monthly_amount": {
+            "type": "object"
+          },
+          "pending_amount": {
+            "type": "object"
+          },
+          "validate_balance": {
+            "type": "number"
+          },
+          "validate_balance_str": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "owner",
+          "balance",
+          "type",
+          "currency",
+          "balance_str",
+          "changes",
+          "monthly_amount",
+          "pending_amount",
+          "validate_balance",
+          "validate_balance_str"
+        ]
+      },
+      "FindWalletResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WalletInfoWithPendingAmount"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "PublicGetVAWalletResponseData": {
+        "type": "object",
+        "properties": {
+          "validate_balance": {
+            "type": "number"
+          },
+          "validate_balance_str": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "validate_balance",
+          "validate_balance_str"
+        ]
+      },
+      "PublicGetVAWalletResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicGetVAWalletResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "FindRangeOfRateParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "CRMCustomerInfo": {
+        "type": "object",
+        "properties": {}
+      },
+      "FindRangeOfFeeParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "SubmitTopUpBody": {
+        "type": "object",
+        "properties": {
+          "range_of_rate": {
+            "$ref": "#/components/schemas/FindRangeOfRateParam"
+          },
+          "custom_rate": {
+            "type": "number"
+          },
+          "customer_info": {
+            "$ref": "#/components/schemas/CRMCustomerInfo"
+          },
+          "range_of_fee": {
+            "$ref": "#/components/schemas/FindRangeOfFeeParam"
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "range_of_rate",
+          "custom_rate",
+          "customer_info",
+          "range_of_fee",
+          "amount"
+        ]
+      },
+      "EWalletRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "ProviderInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "E_WALLET",
+              "WEALIFY",
+              "VA"
+            ]
+          },
+          "transaction_types": {
+            "type": "number",
+            "enum": []
+          }
+        },
+        "required": [
+          "name",
+          "value",
+          "icon",
+          "group",
+          "transaction_types"
+        ]
+      },
+      "ConstantInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          },
+          "icon": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "value",
+          "icon"
+        ]
+      },
+      "SystemPaymentCredential": {
+        "type": "object",
+        "properties": {}
+      },
+      "SystemPaymentRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "system_payment_id": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/EWalletRelation"
+          },
+          "account_levels": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "account_types": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "limits": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "transaction_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "TOP_UP",
+                "WITHDRAWAL",
+                "INTERNAL"
+              ]
+            }
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "daily_limit": {
+            "type": "number"
+          },
+          "changes": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "amount_deposited": {
+            "type": "number"
+          },
+          "amount_withdraw": {
+            "type": "number"
+          },
+          "payment_type": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "E_WALLET"
+            ]
+          },
+          "credential": {
+            "$ref": "#/components/schemas/SystemPaymentCredential"
+          },
+          "daily_amount": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "transaction_types",
+          "provider_type"
+        ]
+      },
+      "EWalletPaymentDetail": {
+        "type": "object",
+        "properties": {
+          "account_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "EWalletPayment": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "$ref": "#/components/schemas/EWalletPaymentDetail"
+          },
+          "payment_type": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "E_WALLET"
+            ]
+          }
+        },
+        "required": [
+          "detail",
+          "payment_type"
+        ]
+      },
+      "Fee": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "PERCENT",
+              "FIXED"
+            ]
+          }
+        },
+        "required": [
+          "value",
+          "type"
+        ]
+      },
+      "Rate": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "LINKED"
+            ]
+          }
+        },
+        "required": [
+          "value",
+          "type"
+        ]
+      },
+      "ConfirmTransactionRelation": {
+        "type": "object",
+        "properties": {
+          "confirm_transaction_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "confirm_transaction_id"
+        ]
+      },
+      "WalletRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MAIN",
+              "VA",
+              "VC"
+            ]
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "balance_str": {
+            "type": "string"
+          },
+          "changes": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "monthly_amount": {
+            "type": "object"
+          }
+        }
+      },
+      "PlatformEntity": {
+        "type": "object",
+        "properties": {}
+      },
+      "VirtualAccountInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "card_holder": {
+            "type": "string"
+          },
+          "card_number": {
+            "type": "string"
+          },
+          "order_no": {
+            "type": "string"
+          },
+          "total_fee": {
+            "type": "number"
+          },
+          "total_received": {
+            "type": "number"
+          },
+          "bank": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "inactive_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "approved_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "restricted_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PlatformEntity"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider_info": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          }
+        },
+        "required": [
+          "id",
+          "card_holder",
+          "card_number",
+          "order_no",
+          "total_fee",
+          "total_received",
+          "bank",
+          "provider",
+          "status",
+          "customer",
+          "platform",
+          "currency",
+          "provider_info"
+        ]
+      },
+      "TopUpInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "receiver": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "system_payment": {
+            "$ref": "#/components/schemas/SystemPaymentRelation"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/EWalletPayment"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "fee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "rate": {
+            "$ref": "#/components/schemas/Rate"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "amount_str": {
+            "type": "string"
+          },
+          "payment_amount": {
+            "type": "number"
+          },
+          "payment_amount_str": {
+            "type": "string"
+          },
+          "remark": {
+            "type": "string"
+          },
+          "received_amount": {
+            "type": "number"
+          },
+          "received_amount_str": {
+            "type": "string"
+          },
+          "changed_amount": {
+            "type": "number"
+          },
+          "changed_amount_str": {
+            "type": "string"
+          },
+          "ref_message": {
+            "type": "string"
+          },
+          "qr_pay": {
+            "type": "string"
+          },
+          "transaction_type": {
+            "type": "string",
+            "enum": [
+              "TOP_UP",
+              "WITHDRAWAL",
+              "INTERNAL"
+            ]
+          },
+          "transaction_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED",
+              "WAITING",
+              "CANCELLED"
+            ]
+          },
+          "yoobil_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "va_transaction_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "confirm_transaction": {
+            "$ref": "#/components/schemas/ConfirmTransactionRelation"
+          },
+          "histories": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "received_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "sent_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "note": {
+            "type": "string"
+          },
+          "created_by_employee": {
+            "type": "boolean"
+          },
+          "virtual_account": {
+            "$ref": "#/components/schemas/VirtualAccountInfo"
+          },
+          "sub_transactions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "transaction_id",
+          "owner",
+          "currency",
+          "provider",
+          "fee",
+          "rate",
+          "amount",
+          "amount_str",
+          "payment_amount",
+          "payment_amount_str",
+          "remark",
+          "received_amount",
+          "received_amount_str",
+          "changed_amount",
+          "changed_amount_str",
+          "ref_message",
+          "qr_pay",
+          "transaction_type",
+          "transaction_status",
+          "yoobil_status",
+          "va_transaction_status",
+          "received_wallet",
+          "sent_wallet",
+          "note",
+          "created_by_employee",
+          "virtual_account",
+          "sub_transactions"
+        ]
+      },
+      "SubmitTopUpResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TopUpInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ExchangeTopUpBody": {
+        "type": "object",
+        "properties": {}
+      },
+      "ConfirmTopUpBody": {
+        "type": "object",
+        "properties": {
+          "transaction_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "transaction_id"
+        ]
+      },
+      "ConfirmTopUpResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TopUpInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindTopUpResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TopUpInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindTopUpsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindCustomerParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "SubmitTopUpCMSBody": {
+        "type": "object",
+        "properties": {
+          "range_of_rate": {
+            "$ref": "#/components/schemas/FindRangeOfRateParam"
+          },
+          "custom_rate": {
+            "type": "number"
+          },
+          "customer_info": {
+            "$ref": "#/components/schemas/CRMCustomerInfo"
+          },
+          "range_of_fee": {
+            "$ref": "#/components/schemas/FindRangeOfFeeParam"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/FindCustomerParam"
+          }
+        },
+        "required": [
+          "range_of_rate",
+          "custom_rate",
+          "customer_info",
+          "range_of_fee",
+          "amount",
+          "owner"
+        ]
+      },
+      "UpdateTopUpResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ChangeTopUpAmountBody": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "DeleteTopUpResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindPaymentParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "SubmitWithdrawalBody": {
+        "type": "object",
+        "properties": {
+          "payment": {
+            "$ref": "#/components/schemas/FindPaymentParam"
+          },
+          "range_of_rate": {
+            "$ref": "#/components/schemas/FindRangeOfRateParam"
+          },
+          "custom_rate": {
+            "type": "number"
+          },
+          "customer_info": {
+            "$ref": "#/components/schemas/CRMCustomerInfo"
+          },
+          "range_of_fee": {
+            "$ref": "#/components/schemas/FindRangeOfFeeParam"
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "payment",
+          "range_of_rate",
+          "custom_rate",
+          "customer_info",
+          "range_of_fee",
+          "amount"
+        ]
+      },
+      "WithdrawalInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "receiver": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "system_payment": {
+            "$ref": "#/components/schemas/SystemPaymentRelation"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/EWalletPayment"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "fee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "rate": {
+            "$ref": "#/components/schemas/Rate"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "amount_str": {
+            "type": "string"
+          },
+          "payment_amount": {
+            "type": "number"
+          },
+          "payment_amount_str": {
+            "type": "string"
+          },
+          "remark": {
+            "type": "string"
+          },
+          "received_amount": {
+            "type": "number"
+          },
+          "received_amount_str": {
+            "type": "string"
+          },
+          "changed_amount": {
+            "type": "number"
+          },
+          "changed_amount_str": {
+            "type": "string"
+          },
+          "ref_message": {
+            "type": "string"
+          },
+          "qr_pay": {
+            "type": "string"
+          },
+          "transaction_type": {
+            "type": "string",
+            "enum": [
+              "TOP_UP",
+              "WITHDRAWAL",
+              "INTERNAL"
+            ]
+          },
+          "transaction_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED",
+              "WAITING",
+              "CANCELLED"
+            ]
+          },
+          "yoobil_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "va_transaction_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "confirm_transaction": {
+            "$ref": "#/components/schemas/ConfirmTransactionRelation"
+          },
+          "histories": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "received_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "sent_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "note": {
+            "type": "string"
+          },
+          "created_by_employee": {
+            "type": "boolean"
+          },
+          "virtual_account": {
+            "$ref": "#/components/schemas/VirtualAccountInfo"
+          },
+          "sub_transactions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "transaction_id",
+          "owner",
+          "currency",
+          "provider",
+          "fee",
+          "rate",
+          "amount",
+          "amount_str",
+          "payment_amount",
+          "payment_amount_str",
+          "remark",
+          "received_amount",
+          "received_amount_str",
+          "changed_amount",
+          "changed_amount_str",
+          "ref_message",
+          "qr_pay",
+          "transaction_type",
+          "transaction_status",
+          "yoobil_status",
+          "va_transaction_status",
+          "received_wallet",
+          "sent_wallet",
+          "note",
+          "created_by_employee",
+          "virtual_account",
+          "sub_transactions"
+        ]
+      },
+      "SubmitWithdrawalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WithdrawalInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindWithdrawalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WithdrawalInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindWithdrawalsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "SubmitWithdrawalCMSBody": {
+        "type": "object",
+        "properties": {
+          "payment": {
+            "$ref": "#/components/schemas/FindPaymentParam"
+          },
+          "range_of_rate": {
+            "$ref": "#/components/schemas/FindRangeOfRateParam"
+          },
+          "custom_rate": {
+            "type": "number"
+          },
+          "customer_info": {
+            "$ref": "#/components/schemas/CRMCustomerInfo"
+          },
+          "range_of_fee": {
+            "$ref": "#/components/schemas/FindRangeOfFeeParam"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/FindCustomerParam"
+          }
+        },
+        "required": [
+          "payment",
+          "range_of_rate",
+          "custom_rate",
+          "customer_info",
+          "range_of_fee",
+          "amount",
+          "owner"
+        ]
+      },
+      "FindSystemPaymentParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "UpdateWithdrawalBody": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "note": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "transaction_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED",
+              "WAITING",
+              "CANCELLED"
+            ]
+          },
+          "yoobil_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "va_transaction_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "system_payment": {
+            "$ref": "#/components/schemas/FindSystemPaymentParam"
+          }
+        }
+      },
+      "UpdateWithdrawalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ChangeWithdrawalAmountBody": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "DeleteWithdrawalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "SubmitInternalBody": {
+        "type": "object",
+        "properties": {
+          "receiver": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "amount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "receiver",
+          "amount"
+        ]
+      },
+      "SubmitInternalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "InternalInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "receiver": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "system_payment": {
+            "$ref": "#/components/schemas/SystemPaymentRelation"
+          },
+          "payment": {
+            "type": "object"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "fee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "rate": {
+            "$ref": "#/components/schemas/Rate"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "amount_str": {
+            "type": "string"
+          },
+          "payment_amount": {
+            "type": "number"
+          },
+          "payment_amount_str": {
+            "type": "string"
+          },
+          "remark": {
+            "type": "string"
+          },
+          "received_amount": {
+            "type": "number"
+          },
+          "received_amount_str": {
+            "type": "string"
+          },
+          "changed_amount": {
+            "type": "number"
+          },
+          "changed_amount_str": {
+            "type": "string"
+          },
+          "ref_message": {
+            "type": "string"
+          },
+          "qr_pay": {
+            "type": "string"
+          },
+          "transaction_type": {
+            "type": "string",
+            "enum": [
+              "TOP_UP",
+              "WITHDRAWAL",
+              "INTERNAL"
+            ]
+          },
+          "transaction_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED",
+              "WAITING",
+              "CANCELLED"
+            ]
+          },
+          "yoobil_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "va_transaction_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "confirm_transaction": {
+            "$ref": "#/components/schemas/ConfirmTransactionRelation"
+          },
+          "histories": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "received_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "sent_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "note": {
+            "type": "string"
+          },
+          "created_by_employee": {
+            "type": "boolean"
+          },
+          "virtual_account": {
+            "$ref": "#/components/schemas/VirtualAccountInfo"
+          },
+          "sub_transactions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "transaction_id",
+          "owner",
+          "currency",
+          "provider",
+          "fee",
+          "rate",
+          "amount",
+          "amount_str",
+          "payment_amount",
+          "payment_amount_str",
+          "remark",
+          "received_amount",
+          "received_amount_str",
+          "changed_amount",
+          "changed_amount_str",
+          "ref_message",
+          "qr_pay",
+          "transaction_type",
+          "transaction_status",
+          "yoobil_status",
+          "va_transaction_status",
+          "received_wallet",
+          "sent_wallet",
+          "note",
+          "created_by_employee",
+          "virtual_account",
+          "sub_transactions"
+        ]
+      },
+      "FindInternalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/InternalInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindInternalsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "SubmitInternalCMSBody": {
+        "type": "object",
+        "properties": {
+          "receiver": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/FindCustomerParam"
+          }
+        },
+        "required": [
+          "receiver",
+          "amount",
+          "owner"
+        ]
+      },
+      "CreateInternalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/InternalInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "UpdateInternalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "DeleteInternalResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "TransactionInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "transaction_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "receiver": {
+            "$ref": "#/components/schemas/CustomerRelation"
+          },
+          "system_payment": {
+            "$ref": "#/components/schemas/SystemPaymentRelation"
+          },
+          "payment": {
+            "type": "object"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "fee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "rate": {
+            "$ref": "#/components/schemas/Rate"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "amount_str": {
+            "type": "string"
+          },
+          "payment_amount": {
+            "type": "number"
+          },
+          "payment_amount_str": {
+            "type": "string"
+          },
+          "remark": {
+            "type": "string"
+          },
+          "received_amount": {
+            "type": "number"
+          },
+          "received_amount_str": {
+            "type": "string"
+          },
+          "changed_amount": {
+            "type": "number"
+          },
+          "changed_amount_str": {
+            "type": "string"
+          },
+          "ref_message": {
+            "type": "string"
+          },
+          "qr_pay": {
+            "type": "string"
+          },
+          "transaction_type": {
+            "type": "string",
+            "enum": [
+              "TOP_UP",
+              "WITHDRAWAL",
+              "INTERNAL"
+            ]
+          },
+          "transaction_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED",
+              "WAITING",
+              "CANCELLED"
+            ]
+          },
+          "yoobil_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "va_transaction_status": {
+            "type": "string",
+            "enum": [
+              "FAILURE",
+              "VERIFYING",
+              "WAITING",
+              "PROCESSING",
+              "SUCCESS"
+            ]
+          },
+          "confirm_transaction": {
+            "$ref": "#/components/schemas/ConfirmTransactionRelation"
+          },
+          "histories": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "received_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "sent_wallet": {
+            "$ref": "#/components/schemas/WalletRelation"
+          },
+          "note": {
+            "type": "string"
+          },
+          "created_by_employee": {
+            "type": "boolean"
+          },
+          "virtual_account": {
+            "$ref": "#/components/schemas/VirtualAccountInfo"
+          },
+          "sub_transactions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "transaction_id",
+          "owner",
+          "currency",
+          "provider",
+          "fee",
+          "rate",
+          "amount",
+          "amount_str",
+          "payment_amount",
+          "payment_amount_str",
+          "remark",
+          "received_amount",
+          "received_amount_str",
+          "changed_amount",
+          "changed_amount_str",
+          "ref_message",
+          "qr_pay",
+          "transaction_type",
+          "transaction_status",
+          "yoobil_status",
+          "va_transaction_status",
+          "received_wallet",
+          "sent_wallet",
+          "note",
+          "created_by_employee",
+          "virtual_account",
+          "sub_transactions"
+        ]
+      },
+      "FindTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TransactionInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindTransactionsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "DeleteTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "PublicGetTransactionListResponseData": {
+        "type": "object",
+        "properties": {
+          "transaction_id": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Mã giao dịch"
+          },
+          "transaction_type": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Loại giao dịch: Top up VA, Withdraw VA"
+          },
+          "created_at": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Thời gian tạo giao dịch"
+          },
+          "success_at": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Thời gian thành công"
+          },
+          "va_name": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Tên tài khoản VA phát sinh giao dịch"
+          },
+          "va_number": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Số tài khoản VA phát sinh giao dịch"
+          },
+          "amount_before_fee": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Số tiền giao dịch trước fee"
+          },
+          "rate": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Mặc định 1 VNDY = 1 VND"
+          },
+          "fee": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Phí giao dịch (%)"
+          },
+          "amount_after_fee": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Số tiền giao dịch sau fee"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Trạng thái của các nền tảng được tạo VA"
+          },
+          "platform_id": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Platform ID"
+          }
+        },
+        "required": [
+          "transaction_id",
+          "transaction_type",
+          "created_at",
+          "success_at",
+          "va_name",
+          "va_number",
+          "amount_before_fee",
+          "rate",
+          "fee",
+          "amount_after_fee",
+          "status",
+          "platform_id"
+        ]
+      },
+      "PublicGetTransactionListResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicGetTransactionListResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "PublicCreateVAWithdrawRequest": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 50000,
+            "description": "amount to withdraw"
+          },
+          "payment": {
+            "type": "object",
+            "example": "{\"id\": \"aiusdfu8-12if4-f14ff-44f4fv\"}",
+            "description": "payment"
+          }
+        },
+        "required": [
+          "amount",
+          "payment"
+        ]
+      },
+      "PublicCreateVAWithdrawResponseData": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "SUCCESS"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "PublicCreateVAWithdrawResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicCreateVAWithdrawResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "FindBankPaymentsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "PublicAddBankRequest": {
+        "type": "object",
+        "properties": {
+          "bank_name": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          }
+        }
+      },
+      "PublicAddBankResponseData": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ACTIVE"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "PublicAddBankResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicAddBankResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "FindVietnamBanksResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindBankPaymentParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "FindCurrencyParam": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "symbol"
+        ]
+      },
+      "UpdateBankPaymentBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+          "bank_code": {
+            "type": "string"
+          },
+          "bank_bin": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "routing_number": {
+            "type": "string"
+          },
+          "routing_bsb_code": {
+            "type": "string"
+          },
+          "ach_routing_number": {
+            "type": "string"
+          },
+          "swift_bic_code": {
+            "type": "string"
+          },
+          "institution_number": {
+            "type": "string"
+          },
+          "transit_number": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "branch_code": {
+            "type": "string"
+          },
+          "branch_name": {
+            "type": "string"
+          },
+          "sort_code": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteBankPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindCountryParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "FindTransferMethodParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "CreateBankPaymentCMSBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "bank_country": {
+            "$ref": "#/components/schemas/FindCountryParam"
+          },
+          "transfer_method": {
+            "$ref": "#/components/schemas/FindTransferMethodParam"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+          "bank_code": {
+            "type": "string"
+          },
+          "bank_bin": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "ach_routing_number": {
+            "type": "string"
+          },
+          "routing_number": {
+            "type": "string"
+          },
+          "routing_bsb_code": {
+            "type": "string"
+          },
+          "swift_bic_code": {
+            "type": "string"
+          },
+          "institution_number": {
+            "type": "string"
+          },
+          "transit_number": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "branch_code": {
+            "type": "string"
+          },
+          "branch_name": {
+            "type": "string"
+          },
+          "sort_code": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/FindCustomerParam"
+          }
+        },
+        "required": [
+          "currency",
+          "provider",
+          "is_default",
+          "bank_country",
+          "transfer_method",
+          "owner"
+        ]
+      },
+      "AccountRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "number"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "tier": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "calling_code": {
+            "$ref": "#/components/schemas/CallingCodeRelation"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "avatar": {
+            "$ref": "#/components/schemas/FileRelation"
+          },
+          "country": {
+            "$ref": "#/components/schemas/CountryRelation"
+          },
+          "language": {
+            "$ref": "#/components/schemas/LanguageRelation"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "BankRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "bank_country": {
+            "$ref": "#/components/schemas/CountryRelation"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+          "bank_code": {
+            "type": "string"
+          },
+          "bank_bin": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "routing_number": {
+            "type": "string"
+          },
+          "routing_bsb_code": {
+            "type": "string"
+          },
+          "ach_routing_number": {
+            "type": "string"
+          },
+          "institution_number": {
+            "type": "string"
+          },
+          "transit_number": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "swift_bic_code": {
+            "type": "string"
+          },
+          "branch_name": {
+            "type": "string"
+          },
+          "branch_code": {
+            "type": "string"
+          },
+          "sort_code": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "TransferMethodRelation": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "fields": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "icon": {
+            "$ref": "#/components/schemas/FileRelation"
+          },
+          "countries": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "BankPaymentInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "payment_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountRelation"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/BankRelation"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "transfer_method": {
+            "$ref": "#/components/schemas/TransferMethodRelation"
+          },
+          "payment_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED"
+            ]
+          },
+          "payment_type": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "E_WALLET"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "payment_id",
+          "owner",
+          "detail",
+          "currency",
+          "provider",
+          "provider_type",
+          "payment_status",
+          "payment_type",
+          "is_default"
+        ]
+      },
+      "CreateBankPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/BankPaymentInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindBankPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/BankPaymentInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "UpdateBankPaymentCMSBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+          "bank_code": {
+            "type": "string"
+          },
+          "bank_bin": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "routing_number": {
+            "type": "string"
+          },
+          "routing_bsb_code": {
+            "type": "string"
+          },
+          "ach_routing_number": {
+            "type": "string"
+          },
+          "swift_bic_code": {
+            "type": "string"
+          },
+          "institution_number": {
+            "type": "string"
+          },
+          "transit_number": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "branch_code": {
+            "type": "string"
+          },
+          "branch_name": {
+            "type": "string"
+          },
+          "sort_code": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "payment_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED"
+            ]
+          }
+        }
+      },
+      "UpdateBankPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "CreateEWalletPaymentBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "currency",
+          "provider",
+          "is_default",
+          "email"
+        ]
+      },
+      "EWalletPaymentInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "payment_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountRelation"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/EWalletRelation"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "transfer_method": {
+            "$ref": "#/components/schemas/TransferMethodRelation"
+          },
+          "payment_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED"
+            ]
+          },
+          "payment_type": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "E_WALLET"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "payment_id",
+          "owner",
+          "detail",
+          "currency",
+          "provider",
+          "provider_type",
+          "payment_status",
+          "payment_type",
+          "is_default"
+        ]
+      },
+      "CreateEWalletPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EWalletPaymentInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindEWalletPaymentParam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "UpdateEWalletPaymentBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateEWalletPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EWalletPaymentInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "DeleteEWalletPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindEWalletPaymentsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "CreateEWalletPaymentCMSBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/FindCustomerParam"
+          }
+        },
+        "required": [
+          "currency",
+          "provider",
+          "is_default",
+          "email",
+          "owner"
+        ]
+      },
+      "CurrencyInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "transfer_methods": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "countries": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "transaction_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "TOP_UP",
+                "WITHDRAWAL",
+                "INTERNAL"
+              ]
+            }
+          },
+          "providers": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "provider_types": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "icon": {
+            "$ref": "#/components/schemas/FileRelation"
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "name",
+          "symbol",
+          "code",
+          "transfer_methods",
+          "countries",
+          "transaction_types",
+          "providers",
+          "provider_types",
+          "icon"
+        ]
+      },
+      "CreateCurrencyResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CurrencyInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindEWalletPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EWalletPaymentInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "UpdateEWalletPaymentCMSBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/FindCurrencyParam"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "WEALIFY",
+              "PING_PONG",
+              "LIAN_LIAN",
+              "PAYONEER",
+              "WORLD_FIRST",
+              "TAZAPAY",
+              "MERCURY",
+              "YOOBIL",
+              "NEOX"
+            ]
+          },
+          "provider_type": {
+            "type": "string",
+            "enum": [
+              "BUSINESS",
+              "INDIVIDUAL"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "payment_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED"
+            ]
+          }
+        }
+      },
+      "BankCountryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "code": {
+            "type": "number"
+          },
+          "iso_code2": {
+            "type": "string"
+          },
+          "iso_code3": {
+            "type": "string"
+          },
+          "flag": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "code",
+          "iso_code2",
+          "iso_code3",
+          "flag",
+          "status"
+        ]
+      },
+      "BankDetailDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "bank_country": {
+            "$ref": "#/components/schemas/BankCountryDto"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+          "bank_bin": {
+            "type": "string"
+          },
+          "bank_code": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "bank_country",
+          "bank_name",
+          "bank_bin",
+          "bank_code",
+          "account_name",
+          "account_number"
+        ]
+      },
+      "ProviderDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "transaction_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "value",
+          "icon",
+          "group",
+          "transaction_types"
+        ]
+      },
+      "ProviderTypeDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "value",
+          "icon"
+        ]
+      },
+      "TransferMethodDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "icon": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "fields",
+          "icon",
+          "status"
+        ]
+      },
+      "CurrencyDto": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "symbol",
+          "name",
+          "icon"
+        ]
+      },
+      "OwnerDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "full_name",
+          "email",
+          "avatar"
+        ]
+      },
+      "PublicGetBankListResponseData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "payment_id": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/BankDetailDto"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderDto"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ProviderTypeDto"
+          },
+          "transfer_method": {
+            "$ref": "#/components/schemas/TransferMethodDto"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyDto"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/OwnerDto"
+          },
+          "payment_status": {
+            "type": "string"
+          },
+          "payment_type": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "is_default": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "payment_id",
+          "detail",
+          "provider",
+          "provider_type",
+          "transfer_method",
+          "currency",
+          "owner",
+          "payment_status",
+          "payment_type",
+          "created_at",
+          "updated_at",
+          "is_default",
+          "status",
+          "is_deleted"
+        ]
+      },
+      "PublicGetBankListResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicGetBankListResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "PaymentInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "is_deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          },
+          "payment_id": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/AccountRelation"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/EWalletRelation"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyRelation"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "provider_type": {
+            "$ref": "#/components/schemas/ConstantInfo"
+          },
+          "transfer_method": {
+            "$ref": "#/components/schemas/TransferMethodRelation"
+          },
+          "payment_status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PROCESS",
+              "APPROVED",
+              "REJECTED"
+            ]
+          },
+          "payment_type": {
+            "type": "string",
+            "enum": [
+              "BANK",
+              "E_WALLET"
+            ]
+          },
+          "is_default": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status",
+          "id",
+          "payment_id",
+          "owner",
+          "detail",
+          "currency",
+          "provider",
+          "provider_type",
+          "payment_status",
+          "payment_type",
+          "is_default"
+        ]
+      },
+      "FindPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PaymentInfo"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "DeletePaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FindPaymentsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "CurrencyVAListDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Vietnam Dong"
+          },
+          "symbol": {
+            "type": "string",
+            "example": "VND"
+          },
+          "status": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "name",
+          "symbol",
+          "status"
+        ]
+      },
+      "PlatformDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "e1a3f2a1-1234-4567-8901-abcdef123456"
+          },
+          "name": {
+            "type": "string",
+            "example": "My Platform"
+          },
+          "fee": {
+            "type": "number",
+            "example": 5000,
+            "description": "Platform fee in VND or smallest currency unit"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "fee"
+        ]
+      },
+      "PublicGetVAListResponseData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "9a68b7f1-7c2d-49f4-bb6e-a5b2c42e3871"
+          },
+          "card_number": {
+            "type": "string",
+            "example": "9704181234567890",
+            "description": "Số thẻ (card number)"
+          },
+          "account_number": {
+            "type": "string",
+            "example": "2111409193",
+            "description": "Số tài khoản VA"
+          },
+          "card_holder": {
+            "type": "string",
+            "example": "NGUYEN HONG NGOC",
+            "description": "Tên tài khoản VA"
+          },
+          "bank": {
+            "type": "string",
+            "example": "BIDV",
+            "description": "Ngân hàng phát hành VA"
+          },
+          "total_receive": {
+            "type": "number",
+            "example": 1000000,
+            "description": "Tổng số tiền đã nhận vào VA"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "RESTRICTED",
+              "PENDING",
+              "PROCESS",
+              "REJECTED"
+            ],
+            "example": "ACTIVE",
+            "description": "Trạng thái của VA"
+          },
+          "restricted_at": {
+            "type": "string",
+            "example": "2025-06-10T08:00:00Z",
+            "description": "Ngày bị restrict"
+          },
+          "inactive_at": {
+            "type": "string",
+            "example": "2025-06-11T08:00:00Z",
+            "description": "Ngày bị inactive"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2025-06-01T12:00:00Z",
+            "description": "Ngày tạo VA"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyVAListDto"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PlatformDto"
+          }
+        },
+        "required": [
+          "id",
+          "card_number",
+          "account_number",
+          "card_holder",
+          "bank",
+          "total_receive",
+          "status",
+          "created_at",
+          "currency",
+          "platform"
+        ]
+      },
+      "PublicGetVAListResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicGetVAListResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "PublicCreateVARequest": {
+        "type": "object",
+        "properties": {
+          "card_holder": {
+            "type": "string"
+          },
+          "platform_id": {
+            "type": "string"
+          },
+          "bank": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_holder",
+          "platform_id",
+          "bank"
+        ]
+      },
+      "PublicCurrency": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean",
+            "example": true
+          },
+          "name": {
+            "type": "string",
+            "example": "Vietnamdong"
+          },
+          "symbol": {
+            "type": "string",
+            "example": "VND"
+          }
+        },
+        "required": [
+          "status",
+          "name",
+          "symbol"
+        ]
+      },
+      "PublicPlatform": {
+        "type": "object",
+        "properties": {
+          "fee": {
+            "type": "number",
+            "example": 12
+          },
+          "platform_id": {
+            "type": "string",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Etsy"
+          }
+        },
+        "required": [
+          "fee",
+          "platform_id",
+          "name"
+        ]
+      },
+      "PublicCustomer": {
+        "type": "object",
+        "properties": {
+          "tier": {
+            "type": "string",
+            "example": "STANDARD"
+          }
+        },
+        "required": [
+          "tier"
+        ]
+      },
+      "PublicCreateVAResponseData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "j9eqwri-iiujjqw8-koasdi-99jqwd-oii9i3"
+          },
+          "card_number": {
+            "type": "string",
+            "example": "0098198203809890891"
+          },
+          "card_holder": {
+            "type": "string",
+            "example": "Nguyen Van A"
+          },
+          "bank": {
+            "type": "string",
+            "example": "BIDV"
+          },
+          "total_receive": {
+            "type": "number",
+            "example": 12
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "RESTRICTED",
+              "PENDING",
+              "PROCESS",
+              "REJECTED"
+            ]
+          },
+          "fee_name": {
+            "type": "string"
+          },
+          "restricted_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "inactive_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/PublicCurrency"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PublicPlatform"
+          },
+          "customer": {
+            "$ref": "#/components/schemas/PublicCustomer"
+          }
+        },
+        "required": [
+          "id",
+          "card_number",
+          "card_holder",
+          "bank",
+          "total_receive",
+          "status",
+          "fee_name",
+          "restricted_at",
+          "inactive_at",
+          "created_at",
+          "currency",
+          "platform",
+          "customer"
+        ]
+      },
+      "PublicCreateVAResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicCreateVAResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "BulkUpdateVirtualAccountPlatformDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "FindVirtualAccountsResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          },
+          "limit": {
+            "type": "number"
+          },
+          "page": {
+            "type": "number"
+          },
+          "next_page": {
+            "type": "number"
+          },
+          "prev_page": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "total_page": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "FilterVirtualAccountDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 10
+          },
+          "dataSort[direction]": {
+            "type": "string",
+            "example": "DESC",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          "dataSort[field]": {
+            "type": "string",
+            "example": "created_at"
+          },
+          "start_date": {
+            "type": "string",
+            "example": ""
+          },
+          "end_date": {
+            "type": "string",
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "RESTRICTED",
+              "PENDING",
+              "PROCESS",
+              "REJECTED"
+            ]
+          },
+          "customer_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "keyword": {
+            "type": "string"
+          },
+          "platform_id": {
+            "type": "string"
+          },
+          "bank": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "YOOBIL",
+              "NEOX"
+            ]
+          }
+        }
+      },
+      "CmsGetListVACustomerDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 10
+          },
+          "dataSort[direction]": {
+            "type": "string",
+            "example": "DESC",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          },
+          "dataSort[field]": {
+            "type": "string",
+            "example": "created_at"
+          },
+          "start_date": {
+            "type": "string",
+            "example": ""
+          },
+          "end_date": {
+            "type": "string",
+            "example": ""
+          }
+        }
+      },
+      "CmsUpdateVirtualAccountStatusDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "PublicGetAllowedVAWithdrawSourceResponseData": {
+        "type": "object",
+        "properties": {
+          "platform_id": {
+            "type": "string"
+          },
+          "platform_name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "platform_id",
+          "platform_name"
+        ]
+      },
+      "PublicGetAllowedVAWithdrawSourceResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PublicGetAllowedVAWithdrawSourceResponseData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ResponseError"
+          },
+          "system": {
+            "$ref": "#/components/schemas/SystemInfo"
+          }
+        },
+        "required": [
+          "status",
+          "data"
+        ]
+      },
+      "CreatePlatformsDto": {
+        "type": "object",
+        "properties": {
+          "platforms": {
+            "example": [
+              {
+                "id": "",
+                "name": "",
+                "status": "INACTIVE"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "platforms"
+        ]
+      },
+      "UpdatePlatformDto": {
+        "type": "object",
+        "properties": {
+          "standard_fee": {
+            "type": "number",
+            "example": 1
+          },
+          "silver_fee": {
+            "type": "number",
+            "example": 1
+          },
+          "gold_fee": {
+            "type": "number",
+            "example": 1
+          },
+          "diamond_fee": {
+            "type": "number",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "example": "ACTIVE"
+          }
+        },
+        "required": [
+          "standard_fee",
+          "silver_fee",
+          "gold_fee",
+          "diamond_fee",
+          "status"
+        ]
+      }
+    }
+  }
+}
